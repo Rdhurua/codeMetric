@@ -2,26 +2,51 @@
   "name": "codecomplexify",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
+  "drizzle": {
+    "schema": "./lib/schema.ts",
+    "out": "./drizzle",
+    "driver": "pg",
+    "dbCredentials": {
+      "connectionString": "postgresql://codeComplexify_owner:npg_FbM9wdR3tzuh@ep-rapid-river-a8733b8e-pooler.eastus2.azure.neon.tech/codeComplexify?sslmode=require"
+    }
+  },
   "dependencies": {
+    "@monaco-editor/react": "^4.7.0",
+    "@neondatabase/serverless": "^1.0.0",
+    "axios": "^1.9.0",
+    "bcryptjs": "^3.0.2",
+    "cloudinary": "^2.6.1",
+    "drizzle-orm": "^0.43.1",
+    "esprima": "^4.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.15.1",
+    "next": "15.3.2",
+    "next-auth": "^4.24.11",
+    "pg": "^8.16.0",
+    "postgres": "^3.4.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.3.2"
+    "react-icons": "^5.5.0",
+    "react-syntax-highlighter": "^15.6.1"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4.1.7",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
+    "drizzle-kit": "^0.31.1",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
-    "@eslint/eslintrc": "^3"
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.7",
+    "typescript": "^5"
   }
 }
