@@ -67,7 +67,6 @@ export default function Home() {
 ) : (
   <button
     onClick={() => {
-      setShowLogin(true);
       setShowAuthModal(true);
     }}
     className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 flex items-center gap-2"
@@ -155,7 +154,7 @@ export default function Home() {
           Sign Up
         </button>
       </div>
-      {showLogin ? <LoginForm /> : <SignUpPage setShowLogin={setShowLogin} />}
+      {showLogin ? <LoginForm /> : <SignUpPage />}
     </Modal>
   )}
 </main>

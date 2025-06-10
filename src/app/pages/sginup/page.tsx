@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function SignUpPage({setShowLogin}) {
+export default function SignUpPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -23,8 +23,8 @@ export default function SignUpPage({setShowLogin}) {
       setError(data.error || "Something went wrong");
       return;
     }
-    alert("successfully registered");
-    setShowLogin(true);
+    alert("successfully registered! click on Login Button");
+  
   };
 
   return (
