@@ -1,6 +1,5 @@
  "use client"
 import React from 'react'
-import { useState } from 'react'
 import  Editor  from '@monaco-editor/react'
 
 const CodeEditor = ({language,onCodeChange}:{language:string,onCodeChange:(value:string)=>void;}) => {

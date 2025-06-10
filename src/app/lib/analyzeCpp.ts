@@ -42,6 +42,7 @@ export function analyzeCpp(code: string) {
       time: "Unknown",
       space: "Unknown",
       explanation: "Error analyzing C++ code.",
+      err
     };
   }
 }

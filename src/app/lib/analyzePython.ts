@@ -8,7 +8,7 @@ export function analyzePython(code: string) {
     const recursion = recursionRegex.test(code);
     const arrays = code.match(arrayRegex) || [];
 
-    let maxDepth = code.split('\n').reduce((depth, line) => {
+    const maxDepth = code.split('\n').reduce((depth, line) => {
       const indent = line.match(/^\s+/);
       return Math.max(depth, indent ? indent[0].length / 4 : 0);
     }, 0);
@@ -38,6 +38,7 @@ export function analyzePython(code: string) {
       time: "Unknown",
       space: "Unknown",
       explanation: "Error analyzing Python code.",
+      err
     };
   }
 }

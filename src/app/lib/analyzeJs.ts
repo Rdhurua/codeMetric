@@ -10,7 +10,7 @@ export  function analyzeJavascript(code:string){
 
     const loopTypes = ["ForStatement", "WhileStatement", "DoWhileStatement"];
 
-    const traverse = (node: any, depth = 0, currentFuncName = "") => {
+    const traverse = (node, depth = 0, currentFuncName = "") => {
       if (!node) return;
 
       // Count loops and track nesting
@@ -77,11 +77,12 @@ export  function analyzeJavascript(code:string){
         recursionDetected ? "recursion present" : "no recursion"
       }, max loop nesting depth ${maxLoopDepth}.`,
     };
-  } catch (error) {
+  } catch (err) {
     return {
       time: "Unknown",
       space: "Unknown",
       explanation: "Error parsing JS code.",
+      err
     };
   }
 }

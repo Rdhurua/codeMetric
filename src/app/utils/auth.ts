@@ -5,7 +5,7 @@ import { connectDB } from "../lib/db";
 
 const JWT_SECRET = process.env.JWT_SECRET || "utyrtsksieiiiisk";
 
-export async function getUserFromRequest(req: Request) {
+export async function getUserFromRequest() {
   await connectDB();
 
   const cookieStore = cookies();

@@ -16,6 +16,6 @@ export async function GET() {
     const decoded = jwt.verify(token, JWT_SECRET) as { email: string; userId: string };
     return Response.json({ success: true, user: decoded });
   } catch (err) {
-    return Response.json({ success: false, message: "Invalid token" }, { status: 401 });
+    return Response.json({ success: false, message: "Invalid token" ,err}, { status: 401 });
   }
 }

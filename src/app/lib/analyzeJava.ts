@@ -8,7 +8,7 @@ export function analyzeJava(code: string) {
     const recursion = recursionRegex.test(code);
     const dynamicMemory = code.match(memoryRegex) || [];
 
-    let maxDepth = code
+    const maxDepth = code
       .split("\n")
       .reduce((depth, line) => {
         const indent = line.match(/^\s+/);
@@ -40,6 +40,7 @@ export function analyzeJava(code: string) {
       time: "Unknown",
       space: "Unknown",
       explanation: "Error analyzing Java code.",
+      err
     };
   }
 }

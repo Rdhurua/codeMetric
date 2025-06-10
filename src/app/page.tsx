@@ -12,7 +12,7 @@ import { FaRegUser } from "react-icons/fa";
 export default function Home() {
   const [code, setCode] = useState("");
   const [language, setLanguage] = useState("python");
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState(null);
   const { user, setUser } = useUser();
 
   const [showAuthModal, setShowAuthModal] = useState(false);

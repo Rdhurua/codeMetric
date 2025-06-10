@@ -2,7 +2,7 @@ import { NextRequest,NextResponse } from "next/server";
 import { connectDB } from "@/app/lib/db";
 import { History } from "@/app/model/History";
 import { getUserFromRequest } from "@/app/utils/auth";
-export async function POST(req:NextRequest,res:NextResponse){ 
+export async function POST(req:NextRequest){ 
      await connectDB();
     try{
          const user=await getUserFromRequest(req);
