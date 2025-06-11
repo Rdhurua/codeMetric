@@ -1,8 +1,8 @@
-// /app/api/auth/[...nextauth]/route.ts
+
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { connectDB } from "@/app/lib/db";
-import User from "@/app/model/User"; // Mongoose User model
+import User from "@/app/model/User"; 
 import { compare } from "bcryptjs";
 
 const handler = NextAuth({
@@ -10,15 +10,26 @@ const handler = NextAuth({
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: {},
-        password: {},
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(
+        credentials: Record<"email" | "password", string> | undefined
+      ) {
         await connectDB();
-        const user = await User.findOne({ email: credentials?.email });
-        if (user && await compare(credentials.password, user.password)) {
+
+        if (!credentials) {
+          throw new Error("Missing credentials");
+        }
+
+        const { email, password } = credentials;
+
+        const user = await User.findOne({ email });
+
+        if (user && (await compare(password, user.password))) {
           return user;
         }
+
         throw new Error("Invalid credentials");
       },
     }),
