@@ -8,7 +8,7 @@ const JWT_SECRET = process.env.JWT_SECRET || "utyrtsksieiiiisk";
 export async function getUserFromRequest() {
   await connectDB();
 
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;
 
   if (!token) return null;

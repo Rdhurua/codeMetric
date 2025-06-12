@@ -1,5 +1,5 @@
 import *as esprima from 'esprima';
-
+import type { Node } from 'estree';
 export  function analyzeJavascript(code:string){
      try {
     const ast = esprima.parseScript(code, { loc: true });
@@ -10,7 +10,7 @@ export  function analyzeJavascript(code:string){
 
     const loopTypes = ["ForStatement", "WhileStatement", "DoWhileStatement"];
 
-    const traverse = (node, depth = 0, currentFuncName = "") => {
+    const traverse = (node:Node, depth = 0, currentFuncName = "") => {
       if (!node) return;
 
       // Count loops and track nesting
@@ -25,28 +25,34 @@ export  function analyzeJavascript(code:string){
         const body = node.body?.body || [];
 
         for (const stmt of body) {
-          if (
-            stmt.type === "ExpressionStatement" &&
-            stmt.expression.type === "CallExpression" &&
-            stmt.expression.callee.name === funcName
-          ) {
-            recursionDetected = true;
-          }
+         if (
+  stmt.type === "ExpressionStatement" &&
+  stmt.expression.type === "CallExpression" &&
+  stmt.expression.callee.type === "Identifier" &&
+  stmt.expression.callee.name === currentFuncName
+) {
+  recursionDetected = true;
+}
+
         }
 
         currentFuncName = funcName;
       }
 
-      for (const key in node) {
-        const child = node[key];
-        if (typeof child === "object" && child !== null) {
-          if (Array.isArray(child)) {
-            for (const c of child) traverse(c, loopTypes.includes(node.type) ? depth + 1 : depth, currentFuncName);
-          } else {
-            traverse(child, loopTypes.includes(node.type) ? depth + 1 : depth, currentFuncName);
-          }
-        }
-      }
+
+   for (const key in node) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const child = (node as any)[key];
+
+  if (typeof child === "object" && child !== null) {
+    if (Array.isArray(child)) {
+      for (const c of child) traverse(c, loopTypes.includes(node.type) ? depth + 1 : depth, currentFuncName);
+    } else {
+      traverse(child, loopTypes.includes(node.type) ? depth + 1 : depth, currentFuncName);
+    }
+  }
+}
+
     };
 
     traverse(ast);

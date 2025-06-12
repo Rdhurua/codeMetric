@@ -4,7 +4,7 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 const JWT_SECRET = process.env.JWT_SECRET;
 
 export async function GET() {
-  const cookieStore = cookies(); // No need to `await` this
+  const cookieStore = await cookies(); // No need to `await` this
   const token = cookieStore.get('token')?.value;
 
   if (!token) {

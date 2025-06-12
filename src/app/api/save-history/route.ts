@@ -5,7 +5,7 @@ import { getUserFromRequest } from "@/app/utils/auth";
 export async function POST(req:NextRequest){ 
      await connectDB();
     try{
-         const user=await getUserFromRequest(req);
+         const user=await getUserFromRequest();
          if (!user) {
       return NextResponse.json(
         { success: false, message: "Unauthorized" },

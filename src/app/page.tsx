@@ -9,10 +9,19 @@ import { useUser } from "./context/userContext";
 import Modal from "@/components/Modal"; 
 import { FaRegUser } from "react-icons/fa";
 
+type AnalysisResult = {
+  time: string;
+  space: string;
+  explanation: string;
+};
+
+
+
+
 export default function Home() {
   const [code, setCode] = useState("");
   const [language, setLanguage] = useState("python");
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<AnalysisResult | null>(null);
   const { user, setUser } = useUser();
 
   const [showAuthModal, setShowAuthModal] = useState(false);
