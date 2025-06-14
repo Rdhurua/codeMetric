@@ -24,6 +24,8 @@ export default function SignUpPage() {
       return;
     }
     alert("successfully registered! click on Login Button");
+    setEmail("");
+    setPassword("");
   
   };
 
